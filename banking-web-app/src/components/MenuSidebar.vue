@@ -1,4 +1,3 @@
-
 <script setup>
 import { RouterLink, useRoute, useRouter } from 'vue-router';
 import { useUserStore } from '../stores/user';
@@ -17,7 +16,7 @@ const handleLogout = () => {
     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light border-end h-100">
         
         <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-            <span class="fs-4 fw-bold text-primary">ClickNext Bank</span>
+            <span class="fs-4 fw-bold text-primary">Banking Web App</span>
         </a>
         <hr>
         
