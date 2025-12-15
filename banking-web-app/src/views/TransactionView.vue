@@ -115,12 +115,15 @@ const confirmDelete = () => {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Transaction</h5>
+                        <h5 class="modal-title">แก้ไขจำนวนเงินฝาก</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <p>แก้ไขรายการของวันที่: <strong>{{ editingItem.date }}</strong></p>
-                        <label class="form-label">จำนวนเงินใหม่</label>
+                         <ul class="list-group list-group-flush bg-light rounded">
+                            <li class="list-group-item bg-transparent">ของวันที่: <strong>{{ editingItem.date }}</strong></li>
+                            <li class="list-group-item bg-transparent">ของอีเมล์: <strong>{{ userStore.email }}</strong></li>
+                         </ul>
+                        <label class="form-label">จำนวนเงิน *</label>
                         <input 
                             v-model="editingItem.amount" 
                             type="number" 
@@ -139,15 +142,14 @@ const confirmDelete = () => {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-danger">Confirm Delete</h5>
+                        <h5 class="modal-title text-danger">ยืนยันการลบ</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <p>คุณต้องการลบรายการนี้ใช่หรือไม่?</p>
                         <ul class="list-group list-group-flush bg-light rounded">
-                            <li class="list-group-item bg-transparent">วันที่: <strong>{{ deletingItem.date }}</strong></li>
-                            <li class="list-group-item bg-transparent">ประเภท: <strong>{{ deletingItem.type }}</strong></li>
                             <li class="list-group-item bg-transparent">จำนวนเงิน: <strong>{{ deletingItem.amount.toLocaleString() }}</strong></li>
+                            <li class="list-group-item bg-transparent">วันที่: <strong>{{ deletingItem.date }}</strong></li>
+                            <li class="list-group-item bg-transparent">อีเมล์: <strong>{{ userStore.email }}</strong></li>
                         </ul>
                     </div>
                     <div class="modal-footer">
