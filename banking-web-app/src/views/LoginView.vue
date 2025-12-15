@@ -16,7 +16,7 @@ onMounted(() => {
 })
 
 const handleLogin = () => {
-    const emailRegex = /^[a-zA-Z][^\s@]*@[^\s@]+\.[a-zA-Z]$/
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
     errors.value = []
     
     if (!email.value || !password.value) {

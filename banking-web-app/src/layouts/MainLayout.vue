@@ -23,7 +23,6 @@ const handleLogout = () => {
             <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
                 ☰
             </button>
-            <span class="navbar-brand fw-bold text-primary ms-2">ClickNext</span>
             <button @click="handleLogout" class="btn btn-sm btn-danger">Logout</button>
         </nav>
 
