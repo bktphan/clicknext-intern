@@ -4,21 +4,23 @@ import { useBankStore } from '../stores/bank'
 import MainLayout from '../layouts/MainLayout.vue'
 
 const amount = ref('')
+const error = ref('')
+const success = ref('')
 const bankStore = useBankStore()
 
 const handleTransaction = (type) => {
     const value = Number(amount.value)
     
     if (!amount.value || value <= 0) {
-        alert('กรุณากรอกจำนวนเงินให้ถูกต้อง')
+        error.value = 'กรุณากรอกจำนวนเงิน'
         return
     }
     if (value > 100000) {
-        alert('ทำรายการได้สูงสุดครั้งละ 100,000 บาท')
+        error.value = 'ทำรายการได้สูงสุดครั้งละ 100,000 บาท'
         return
     }
     if (type === 'withdraw' && value > bankStore.balance) {
-        alert('ยอดเงินในบัญชีไม่เพียงพอสำหรับการถอน')
+        error.value = 'ยอดเงินในบัญชีไม่เพียงพอสำหรับการถอน'
         return
     }
 
@@ -28,7 +30,7 @@ const handleTransaction = (type) => {
     })
 
     const actionName = type === 'deposit' ? 'ฝาก' : 'ถอน'
-    alert(`ทำรายการ ${actionName} จำนวน ${value.toLocaleString()} บาท เรียบร้อยแล้ว`)
+    success.value = `ทำรายการ ${actionName} จำนวน ${value.toLocaleString()} บาท เรียบร้อยแล้ว`
     amount.value = ''
 }
 </script>
@@ -60,6 +62,39 @@ const handleTransaction = (type) => {
                                     placeholder="กรอกจำนวนเงิน" 
                                 >
                                 <div class="form-text text-end">0 - 100,000 บาท</div>
+                            </div>
+                            
+                            <div v-if="error" class="modal fade show" tabindex="-1" style="display: block; background-color: rgba(0,0,0,0.5);">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-danger text-white"> <h5 class="modal-title">เกิดข้อผิดพลาด</h5>
+                                            <button type="button" class="btn-close" @click="error = ''"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="fs-5">{{ error }}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" @click="error = ''">ปิด</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div v-if="success" class="modal fade show" tabindex="-1" style="display: block; background-color: rgba(0,0,0,0.5);">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-success text-white">
+                                            <h5 class="modal-title">ข้อผิดพลาด</h5>
+                                            <button type="button" class="btn-close" @click="success = ''"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>{{ success }}</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" @click="success = ''">ปิด</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row g-3">
