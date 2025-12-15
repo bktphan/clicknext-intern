@@ -2,7 +2,7 @@ import { defineStore } from "pinia"
 
 export const useBankStore = defineStore("bank", {
     state: () => ({
-        transactions: []
+        transactions: JSON.parse(localStorage.getItem('my_bank_transactions')) || []
     }),
     getters: {
         balance: (state) => {
@@ -14,20 +14,26 @@ export const useBankStore = defineStore("bank", {
         }
     },
     actions: {
+        saveData() {
+            localStorage.setItem('my_bank_transactions', JSON.stringify(this.transactions))
+        },
         addTransaction(payload) {
             this.transactions.push({
                 id: Date.now(),
                 date: new Date().toLocaleString('en-GB'),
                 ...payload
             })
+            this.saveData()
         },
         deleteTransaction(id) {
             this.transactions = this.transactions.filter(t => t.id !== id)
+            this.saveData()
         },
         editTransaction(id, newAmount) {
             const found = this.transactions.find(t => t.id === id)
             if (found) {
                 found.amount = Number(newAmount)
+                this.saveData()
             }
         }
     }
