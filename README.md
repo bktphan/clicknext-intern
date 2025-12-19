@@ -1,9 +1,9 @@
 # 🧪 Banking Web App Playground
 
-## 📌 Overview (ภาพรวม)
-Banking Web App Playground เป็นเว็บแอปพลิเคชันจำลองระบบธนาคารพื้นฐาน (Banking System) ที่พัฒนาขึ้นเพื่อฝึกฝนและเรียนรู้การเขียนเว็บด้วย Vue 3 ตัวแอปพลิเคชันรองรับฟังก์ชันการทำงานหลักๆ เช่น การเข้าสู่ระบบ การฝาก-ถอนเงิน และการจัดการประวัติธุรกรรม โดยเน้นการจัดการ State ที่มีประสิทธิภาพและการจัดเก็บข้อมูลแบบถาวร (Data Persistence) บนฝั่ง Client
+## 📌 Overview
+Banking Web App Playground is a basic banking system simulator developed to practice and learn web development with Vue 3. The application supports core functionalities such as login, deposit-withdrawal, and transaction history management, emphasizing efficient state management and client-side data persistence.
 
-## 🛠 Tech Stack (เทคโนโลยีที่ใช้)
+## 🛠 Tech Stack
 - **Frontend Framework:** Vue 3 (Composition API)
 - **Build Tool:** Vite
 - **State Management:** Pinia
@@ -12,41 +12,41 @@ Banking Web App Playground เป็นเว็บแอปพลิเคช�
 - **Language:** JavaScript
 - **Code Quality:** ESLint, Prettier
 
-## ✨ Key Feature (ฟีเจอร์)
-- **Authentication:** ระบบจำลองการเข้าสู่ระบบ พร้อมการตรวจสอบความถูกต้องของข้อมูล (Validation) เช่น รูปแบบอีเมลและความยาวของรหัสผ่าน
-- **Banking Operations:** รองรับการฝากเงิน (Deposit) และถอนเงิน (Withdraw) พร้อมการตรวจสอบยอดเงินคงเหลือและแจ้งเตือนเมื่อเกิดข้อผิดพลาด
-- **Transaction History:** แสดงรายการเดินบัญชีทั้งหมด โดยระบุวันที่ อีเมลผู้ใช้งาน ประเภทธุรกรรม และจำนวนเงิน
-- **Transaction Management:** สามารถแก้ไข (Edit) และลบ (Delete) รายการธุรกรรมย้อนหลังได้
-- **Data Persistence:** บันทึกข้อมูลธุรกรรมและสถานะการเข้าสู่ระบบลงใน `LocalStorage` ของเบราว์เซอร์ ทำให้ข้อมูลยังคงอยู่เมื่อรีเฟรชหรือปิดหน้าเว็บ
+## ✨ Key Features
+- **Authentication:** Simulated login system with data validation (e.g., email format and password length checks).
+- **Banking Operations:** Supports deposit and withdrawal transactions with balance validation and error notifications.
+- **Transaction History:** Displays a complete list of transactions, including date, user email, transaction type, and amount.
+- **Transaction Management:** Allows editing and deleting of past transactions.
+- **Data Persistence:** Saves transaction data and login status to the browser's `LocalStorage`, ensuring data remains available after refreshing or closing the page.
 
-## 🚀 Getting Started (การเริ่มต้นใช้งาน)
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (เวอร์ชัน 20.19.0 หรือสูงกว่า)
-- npm (ติดตั้งมาพร้อมกับ Node.js)
+- Node.js (Version 20.19.0 or higher)
+- npm (Comes installed with Node.js)
 
 ### Installation & Running
-1. Clone โปรเจกต์นี้ลงในเครื่องของคุณ
-2. เข้าไปที่โฟลเดอร์ `client`
+1. Clone this project to your local machine.
+2. Navigate to the `client` folder:
    ```bash
    cd client
    ```
-3. ติดตั้ง dependencies
+3. Install dependencies:
    ```bash
    npm install
    ```
-4. รันโปรเจกต์ในโหมด Development
+4. Run the project in development mode:
    ```bash
    npm run dev
    ```
-5. เปิดเบราว์เซอร์และไปที่ URL ที่แสดง (โดยปกติจะเป็น `http://localhost:5173`)
+5. Open your browser and go to the displayed URL (usually `http://localhost:5173`).
 
-## 📝 Learning Log / Notes (บันทึกการเรียนรู้)
-- **State Management with Pinia:** การแยก Store ออกเป็น `user` (สำหรับจัดการ Login) และ `bank` (สำหรับจัดการธุรกรรม) ช่วยให้โค้ดเป็นระเบียบและจัดการข้อมูลได้ง่ายขึ้น รวมถึงการใช้ Getters เพื่อคำนวณยอดเงินคงเหลือแบบ Real-time
-- **Vue Router Navigation Guards:** การใช้ `beforeEach` เพื่อตรวจสอบสถานะ `isLoggedIn` จาก LocalStorage ป้องกันไม่ให้ผู้ใช้เข้าถึงหน้า Deposit หรือ Transaction หากยังไม่ได้ Login
-- **LocalStorage Integration:** เรียนรู้วิธีการ Sync ข้อมูลจาก Pinia State ลงสู่ LocalStorage เพื่อให้ข้อมูลไม่หาย (Persist) โดยมีการโหลดข้อมูลกลับเข้ามาเมื่อแอปพลิเคชันเริ่มต้น
-- **Bootstrap 5 & Modals:** การนำ Bootstrap มาใช้จัด Layout และการควบคุม Modal ผ่าน JavaScript เพื่อแสดงฟอร์มแก้ไขหรือยืนยันการลบข้อมูล
-- **Vue Composition API:** การเขียนโค้ดแบบ `<script setup>` ทำให้โค้ดกระชับและอ่านง่ายขึ้น รวมถึงการใช้ `ref` และ `computed` ในการจัดการ Reactive Data
+## 📝 Learning Log / Notes
+- **State Management with Pinia:** Separating stores into `user` (for login management) and `bank` (for transaction management) keeps the code organized. Using Getters allows for real-time balance calculation.
+- **Vue Router Navigation Guards:** Using `beforeEach` to check the `isLoggedIn` status from LocalStorage prevents unauthorized access to Deposit or Transaction pages.
+- **LocalStorage Integration:** Learned how to sync data from Pinia State to LocalStorage for data persistence, reloading it when the application starts.
+- **Bootstrap 5 & Modals:** Utilizing Bootstrap for layout and controlling Modals via JavaScript to display edit forms or deletion confirmations.
+- **Vue Composition API:** Writing code with `<script setup>` makes it more concise and readable, including the use of `ref` and `computed` for reactive data management.
 
 ---
 Made with ❤️ by bktphan 2025
